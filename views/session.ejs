@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Created by Kıraç Armağan Önal -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ColorClick Session</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/session.page.css">
+    <meta property="theme-color" content="<%=SESSION_COLOR%>" />
+    <meta property="og:site_name" content="ClickColor" />
+    <meta property="og:title" content="Session" />
+    <meta property="og:description" content="Colors, yes." />
+    <meta property="og:image" content="/api/image/cursor?color=<%=SESSION_COLOR.slice(1)%>" />
+    <link id="pageIconLink" rel="shortcut icon" type="image/png" href="/api/image/cursor?color=<%=SESSION_COLOR.slice(1)%>">
+    <script>
+        const SESSION_ID = `<%=SESSION_ID%>`;
+    </script>
+</head>
+
+<body>
+    <div id="optionsPage">
+        <button id="optionsCloseButton" onclick="toggleOptionsPage()">X</button>
+        <h1 id="optionsTitle">Options</h1>
+        <div id="optionsInnerContainer">
+            <section>
+                <h2>Post Request <span style="opacity: 0.8; font-size: 1rem;">(application/json) On color change.</span></h2>
+                <label for="postRequestURLInput">
+                    Post URL:<br>
+                    <input type="url" id="postRequestURLInput">
+                </label>
+                <br>
+                <label for="postRequestBodyTextArea">
+                    Post Body: <span style="opacity: 0.8;">Variables: {{#hexColor}}, {{hexColor}}, {{colorNumber}}, {{SESSION_ID}}</span><br>
+                    <textarea id="postRequestBodyTextArea" ></textarea>
+                </label>
+                <br>
+                <button id="postRequestSaveButton" onclick="postRequestSave()">Save</button>
+                <button id="postRequestResetButton" onclick="postRequestReset()">Reset</button>
+            </section>
+            <section>
+                <h2>Other</h2>
+                <label for="disableMemesCheckbox">
+                    <input type="checkbox" id="disableMemesCheckbox">
+                    Disable Memes
+                </label>
+            </section>
+        </div>
+
+    </div>
+    <input type="color" class="hidden" id="colorPicker">
+    <div class="container">
+        <button class="btn-extra-large" id="pickerButton" onclick="colorPicker.click()">[...]</button>
+        <br>
+        <button onclick="toggleOptionsPage()">Options</button>
+        <video class="perish" id="catVideo" src="/other/00FFE1.mp4"></video>
+    </div>
+    <script src="/js/index.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/addTabSupport.js"></script>
+    <script src="/js/session.page.js"></script>
+</body>
+
+</html>

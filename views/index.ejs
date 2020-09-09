@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Created by Kıraç Armağan Önal -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClickColor</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/index.page.css">
+    <meta property="theme-color" content="<%=RANDOM_HEX%>" />
+    <meta property="og:site_name" content="ClickColor" />
+    <meta property="og:title" content="Create Session" />
+    <meta property="og:description" content="Colors, yes." />
+    <meta property="og:image" content="/api/image/cursor?color=<%=RANDOM_HEX.slice(1)%>" />
+    <link id="pageIconLink" rel="shortcut icon" type="image/png" href="/api/image/cursor?color=<%=RANDOM_HEX.slice(1)%>">
+</head>
+<body>
+    <div class="container">
+        <h1 id="title">ClickColor</h1>
+        <div id="createSessionArea">
+            <input type="text" id="sessionIdInput" placeholder="Session ID">
+            <button id="createSessionButton">Create session</button>
+        </div>
+    </div>
+    <script>
+        const RANDOM_HEX = `<%=RANDOM_HEX%>`;
+        document.querySelector("#title").style.color = RANDOM_HEX;
+    </script>
+    <script src="/js/index.js"></script>
+    <script src="/js/index.page.js"></script>
+</body>
+</html>

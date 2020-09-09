@@ -1,0 +1,80 @@
+body {
+    background-color: black;
+    color: #f0f0f0;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    outline: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 720px;
+    width: 100%;
+    min-height: 100vh;
+    text-align: center;
+    padding: 1rem 0;
+    position: relative;
+}
+
+button, input[type="button"] {
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    background: #00000040;
+    border: 1px solid rgb(200, 200, 200);
+    padding: 0.5rem 1rem;
+    margin: 0.4rem;
+    transition: 100ms ease-in-out color, 100ms ease-in-out border;
+}
+
+input[type="text"], input[type="url"], textarea {
+    color: rgb(230, 230, 230);
+    font-size: 1rem;
+    background: #00000040;
+    border: 1px solid rgb(200, 200, 200);
+    padding: 0.5rem 1rem;
+    margin: 0.4rem;
+    transition: 100ms ease-in-out color, 100ms ease-in-out border;
+}
+
+input[type="text"]:hover, input[type="text"]:focus, input[type="url"]:hover, input[type="url"]:focus, textarea:hover, textarea:focus {
+    border: 1px solid rgb(245, 245, 245);
+    color: #ffffff;
+}
+
+button.btn-large, input[type="button"].btn-large {
+    font-size: 2rem;
+    padding: 1rem 2rem;
+}
+
+button.btn-extra-large, input[type="button"].btn-extra-large {
+    font-size: 3rem;
+    padding: 2rem 3rem;
+}
+
+button:hover, button:focus, input[type="button"]:hover, input[type="button"]:focus {
+    border: 1px solid rgb(245, 245, 245);
+    color: rgb(230, 230, 230);
+}
+
+button:active, input[type="button"]:active {
+    border: 1px solid rgb(255, 255, 255);
+    color: rgb(224, 224, 224);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.green-color {
+    color: #4fdb56 !important;
+}
+
+.red-color {
+    color: #db4f4f !important;
+}

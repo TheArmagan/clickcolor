@@ -1,0 +1,14 @@
+#createSessionArea {
+    margin: 1rem auto;
+    max-width: 720px;
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid white;
+    padding: 1rem;
+}
+
+#title {
+    font-size: 3rem;
+    user-select: none;
+    text-shadow: 1px 1px black;
+}
