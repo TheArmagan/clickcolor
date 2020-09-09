@@ -12,7 +12,7 @@ const catVideo = document.querySelector("#catVideo");
 const pageIconLinkElement = document.querySelector("#pageIconLink");
 
 
-
+const HEX_COLOR_REGEX = /^#(?:[0-9a-fA-F]{3}){1,2}$/;
 const URL_REGEX = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/;
 
 let CURRENT_COLOR = "#000000";
@@ -23,6 +23,11 @@ socket.on(":onReady",(_sessionColor)=>{
     document.body.style.backgroundColor = _sessionColor;
     CURRENT_COLOR = _sessionColor;
     pickerButton.textContent = "Pick Color";
+
+    if (HEX_COLOR_REGEX.test("#"+location.pathname.slice(9))) {
+        socket.emit(":updateColor","#"+location.pathname.slice(9));
+    }
+
     socket.on(":updateColor",(hexColor)=>{
         document.body.style.backgroundColor = hexColor;
         CURRENT_COLOR = hexColor;

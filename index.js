@@ -28,7 +28,7 @@ io.on("connection",(socket)=>{
         const ROOM_NAME = `SESSION:${SESSION_ID}`;
         socket.join(ROOM_NAME);
         socket.ROOM_NAME = ROOM_NAME;
-        socket.emit(":onReady",(SESSION_COLORS.get(SESSION_ID) || "#000000"));
+        socket.emit(":onReady",(SESSION_COLORS.get(SESSION_ID) || HEX_COLOR_REGEX.test("#"+SESSION_ID) ? "#"+SESSION_ID : "#000000"));
 
         socket.on(":updateColor",(hexColor)=>{
             if (!HEX_COLOR_REGEX.test(hexColor)) return;
