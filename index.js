@@ -26,9 +26,13 @@ app.get("/session/:SESSION_ID",(req,res)=>{
 io.on("connection",(socket)=>{
     socket.once(":setupConnection",({SESSION_ID})=>{
         const ROOM_NAME = `SESSION:${SESSION_ID}`;
+        let _isNewSession = !Object.values(io.sockets.sockets).some(s=>s.ROOM_NAME == ROOM_NAME);
         socket.join(ROOM_NAME);
         socket.ROOM_NAME = ROOM_NAME;
-        socket.emit(":onReady",(SESSION_COLORS.get(SESSION_ID) || HEX_COLOR_REGEX.test("#"+SESSION_ID) ? "#"+SESSION_ID : "#000000"));
+        socket.emit(":onReady",{
+            _sessionColor: SESSION_COLORS.get(SESSION_ID) || HEX_COLOR_REGEX.test("#"+SESSION_ID) ? "#"+SESSION_ID : "#000000",
+            _isNewSession
+        });
 
         socket.on(":updateColor",(hexColor)=>{
             if (!HEX_COLOR_REGEX.test(hexColor)) return;

@@ -18,13 +18,13 @@ const URL_REGEX = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.
 let CURRENT_COLOR = "#000000";
 
 socket.emit(":setupConnection",{SESSION_ID});
-socket.on(":onReady",(_sessionColor)=>{
-    console.log({_sessionColor})
+socket.on(":onReady",({_sessionColor, _isNewSession})=>{
+    console.log({_sessionColor, _isNewSession})
     document.body.style.backgroundColor = _sessionColor;
     CURRENT_COLOR = _sessionColor;
     pickerButton.textContent = "Pick Color";
 
-    if (HEX_COLOR_REGEX.test("#"+location.pathname.slice(9))) {
+    if (HEX_COLOR_REGEX.test("#"+location.pathname.slice(9)) && _isNewSession) {
         socket.emit(":updateColor","#"+location.pathname.slice(9));
     }
 
