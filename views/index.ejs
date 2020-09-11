@@ -4,13 +4,13 @@
     <!-- Created by Kıraç Armağan Önal -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClickColor</title>
+    <title>(<%=SESSION_AMOUNT%>) ClickColor</title>
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/index.page.css">
     <meta property="theme-color" content="<%=RANDOM_HEX%>" />
     <meta property="og:site_name" content="ClickColor" />
     <meta property="og:title" content="Create Session" />
-    <meta property="og:description" content="Colors, yes." />
+    <meta property="og:description" content="Colors, yes. <%=SESSION_AMOUNT%> active client(s)." />
     <meta property="og:image" content="/api/image/cursor?color=<%=RANDOM_HEX.slice(1)%>" />
     <link id="pageIconLink" rel="shortcut icon" type="image/png" href="/api/image/cursor?color=<%=RANDOM_HEX.slice(1)%>">
 </head>
@@ -20,6 +20,7 @@
         <div id="createSessionArea">
             <input type="text" id="sessionIdInput" placeholder="Session ID">
             <button id="createSessionButton">Create session</button>
+            <h1 id="activeClientText"><%=SESSION_AMOUNT%> active client(s).</h1>
         </div>
     </div>
     <script>

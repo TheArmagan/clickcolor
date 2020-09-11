@@ -2,7 +2,7 @@ function randomNumber(min,max){
     return Math.floor(Math.random()*(max-min+1)+min);
 }
 
-function randomText(len=64,min=65,max=90) {
+function randomText(len=16,min=65,max=90) {
     return Array(len).fill("").map(()=>{return String.fromCharCode(randomNumber(min,max))}).join("")
 }
 

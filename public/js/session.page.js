@@ -15,22 +15,22 @@ const pageIconLinkElement = document.querySelector("#pageIconLink");
 const HEX_COLOR_REGEX = /^#(?:[0-9a-fA-F]{3}){1,2}$/;
 const URL_REGEX = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/;
 
-let CURRENT_COLOR = "#000000";
-
 socket.emit(":setupConnection",{SESSION_ID});
-socket.on(":onReady",({_sessionColor, _isNewSession})=>{
+socket.on(":connection",({_sessionColor, _isNewSession})=>{
     console.log({_sessionColor, _isNewSession})
     document.body.style.backgroundColor = _sessionColor;
-    CURRENT_COLOR = _sessionColor;
     pickerButton.textContent = "Pick Color";
 
     if (HEX_COLOR_REGEX.test("#"+location.pathname.slice(9)) && _isNewSession) {
         socket.emit(":updateColor","#"+location.pathname.slice(9));
+    } else if (localStorage.getItem("setSessionColorTo") && _isNewSession) {
+        let color = localStorage.getItem("setSessionColorTo");
+        socket.emit(":updateColor",color);
     }
+    localStorage.removeItem("setSessionColorTo");
 
     socket.on(":updateColor",(hexColor)=>{
         document.body.style.backgroundColor = hexColor;
-        CURRENT_COLOR = hexColor;
         pageIconLinkElement.href = `/api/image/cursor?color=${hexColor.slice(1)}`;
 
         if (`${hexColor}`.toUpperCase() == "#00FFE1" && !localStorage.getItem("disableMemes")) {

@@ -6,5 +6,6 @@ sessionIdInput.value = randomText();
 
 createSessionButton.addEventListener("click",()=>{
     if (!sessionIdInput.value) sessionIdInput.value = randomText();
+    localStorage.setItem("setSessionColorTo", RANDOM_HEX);
     window.location = `/session/${sessionIdInput.value}`;
 })
