@@ -35,7 +35,7 @@ io.on("connection",(socket)=>{
         socket.join(ROOM_NAME);
         socket.ROOM_NAME = ROOM_NAME;
         socket.emit(":connection",{
-            _sessionColor: SESSION_COLORS.get(SESSION_ID) || HEX_COLOR_REGEX.test("#"+SESSION_ID) ? "#"+SESSION_ID : "#000000",
+            _sessionColor: SESSION_COLORS.get(SESSION_ID) || "#000000",
             _isNewSession
         });
 
