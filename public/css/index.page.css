@@ -19,3 +19,7 @@
     margin-top: 1rem;
     font-size: 1rem;
 }
+
+#createOrJoinSessionButton {
+    width: 9rem;
+}
