@@ -20,12 +20,14 @@ app.get("/",(req,res)=>{res.render("index.ejs",{RANDOM_HEX:randomHexColor(),SESS
 
 app.get("/session/:SESSION_ID",(req,res)=>{
     const {SESSION_ID} = req.params;
+    if (SESSION_ID.length > 64) return res.redirect(`/session/${SESSION_ID.slice(0, 64)}#64`);
     res.render("session",{SESSION_ID,SESSION_COLOR:(SESSION_COLORS.get(SESSION_ID) || "#000000")});
 });
 
 io.on("connection",(socket)=>{
     log("SESSION AMOUNT:", getSessionAmount());
     socket.once(":setupConnection",({SESSION_ID})=>{
+        if (SESSION_ID.length > 64) return socket.disconnect(true);
         const ROOM_NAME = `SESSION:${SESSION_ID}`;
         let _isNewSession = !Object.values(io.sockets.sockets).some(s=>s.ROOM_NAME == ROOM_NAME);
         if (_isNewSession) {
